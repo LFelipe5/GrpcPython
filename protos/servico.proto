@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+service RotaMensagem {
+    // Método Unário
+    rpc GetMensagem(EnvioMensagem) returns (Resposta) {}
+
+    // Método Cliente de Streaming
+    rpc ListMensagemCliente(EnvioMensagem) returns (stream Resposta) {}
+
+    // Método Fluxo bidirecional
+    rpc ListMensagemAmbos(stream EnvioMensagem) returns (stream Resposta) {}
+
+    // Método Servidor de Streaming
+    rpc ListMensagemServidor(EnvioMensagem) returns (stream Resposta) {}
+}
+
+message EnvioMensagem {
+    string nome = 1;
+}
+
+message Resposta {
+    // Defina os campos que você deseja retornar como resposta
+    string mensagem = 1;
+}
